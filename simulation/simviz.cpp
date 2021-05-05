@@ -20,8 +20,8 @@ void sighandler(int){fSimulationRunning = false;}
 using namespace std;
 using namespace Eigen;
 
-const string world_file = "./resources/world.urdf";
-const string robot_file = "./resources/panda.urdf";
+const string world_file = "./resources/model/world/world.urdf";
+const string robot_file = "./resources/model/panda/panda.urdf";
 const string robot_name = "panda";
 const string camera_name = "camera_fixed";
 

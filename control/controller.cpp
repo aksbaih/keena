@@ -18,7 +18,7 @@ void sighandler(int sig)
 using namespace std;
 using namespace Eigen;
 
-const string robot_file = "./resources/panda_arm.urdf";
+const string robot_file = "./resources/model/panda/panda.urdf";
 
 #define JOINT_CONTROLLER      0
 #define POSORI_CONTROLLER     1
