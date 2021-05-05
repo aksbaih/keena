@@ -24,7 +24,8 @@ const string world_file = "./resources/model/world/world.urdf";
 const string robot_file = "./resources/model/panda/panda.urdf";
 const string robot_name = "panda";
 const string camera_name = "camera_fixed";
-
+const string obj_file = "./resources/model/legos/lego_single_unit.urdf";
+const string obj_name = "lego_single_unit"; 
 // redis keys:
 // - write:
 const std::string JOINT_ANGLES_KEY = "sai2::cs225a::project::sensors::q";
@@ -80,6 +81,12 @@ int main() {
 	auto robot = new Sai2Model::Sai2Model(robot_file, false);
 	robot->updateKinematics();
 
+	// load robot objects
+	auto object = new Sai2Model::Sai2Model(obj_file, false);
+	// object->_q(0) = 0.60;
+	// object->_q(1) = -0.35;
+	object->updateModel();
+
 	// load simulation world
 	auto sim = new Simulation::Sai2Simulation(world_file, false);
 	sim->setCollisionRestitution(0);
@@ -89,6 +96,16 @@ int main() {
 	sim->getJointPositions(robot_name, robot->_q);
 	sim->getJointVelocities(robot_name, robot->_dq);
 	robot->updateKinematics();
+
+	// set co-efficient of restition to zero for force control
+    // see issue: https://github.com/manips-sai/sai2-simulation/issues/1
+    sim->setCollisionRestitution(0.0);
+
+    // set co-efficient of friction also to zero for now as this causes jitter
+    // sim->setCoeffFrictionStatic(0.0);
+    // sim->setCoeffFrictionDynamic(0.0);
+    sim->setCoeffFrictionStatic(0.5);
+    sim->setCoeffFrictionDynamic(0.5);
 
 	/*------- Set up visualization -------*/
 	// set up error callback
@@ -141,6 +158,7 @@ int main() {
 		int width, height;
 		glfwGetFramebufferSize(window, &width, &height);
 		graphics->updateGraphics(robot_name, robot);
+		graphics->updateGraphics(obj_name, object);
 		graphics->render(camera_name, width, height);
 
 		// swap buffers

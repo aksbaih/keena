@@ -6,6 +6,11 @@
 		<model dir="./resources/model/panda" path="panda.urdf" name="panda" />
 	</robot>
 
+	<robot name="lego_single_unit">
+		<model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+		<origin xyz="0 -0.35 0.593" rpy="0 0 0" />
+	</robot>
+
 	<light name="light1" type="directional">
 		<position xyz="2.0 2.0 2.0" />
 		<lookat xyz="0.0 0.0 0.0" />
