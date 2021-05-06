@@ -44,12 +44,14 @@ unsigned long long controller_counter = 0;
 const bool inertia_regularization = true;
 
 int main() {
-    PDController controller(robot_file, 0.4);
+    PDController controller(robot_file, 0.8);
     Vector3d xd; xd << 0.4, 0.4, 0.4;
-    Matrix3d ori;
-    controller.gotoPosition(xd, ori, 1.0, 1.0);
-    xd << 0.4, -1.4, 0.4;
-    controller.gotoPosition(xd, ori, 1.0, 1.0);
+    Matrix3d Rd; Rd << cos(M_PI / 3),   0,  sin(M_PI / 3),
+                    0,              1,  0,
+                    -sin(M_PI / 3), 0,  cos(M_PI / 3);
+    controller.gotoPosition(xd, Rd, 0.05, 2.0, "1");
+    xd << 0.4, -0.6, 0.4;
+    controller.gotoPosition(xd, Rd, 0.05, 2.0, "2");
     cout << "Controller finished" << endl;
     return 0;
 

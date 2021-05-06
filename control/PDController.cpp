@@ -67,7 +67,7 @@ void PDController::gotoPosition(const Vector3d position,
         robot->taskInertiaMatrix(Lambda, Jv);
         VectorXd g(dof); robot->gravityVector(g);
 
-        double kp = 600.0;
+        double kp = 200.0;
         double kv = 40.0;
         double kpj = 0.5 * kp;
         double kvj = 0.5 * kv;

@@ -28,11 +28,10 @@ const string obj_file = "./resources/model/legos/lego_single_unit.urdf";
 const string obj_name = "lego_single_unit"; 
 // redis keys:
 // - write:
-const std::string JOINT_ANGLES_KEY = "sai2::cs225a::project::sensors::q";
-const std::string JOINT_VELOCITIES_KEY = "sai2::cs225a::project::sensors::dq";
+const std::string JOINT_ANGLES_KEY = "sai2::keena::sensors::q";
+const std::string JOINT_VELOCITIES_KEY = "sai2::keena::sensors::dq";
 // - read
-const std::string JOINT_TORQUES_COMMANDED_KEY = "sai2::cs225a::project::actuators::fgc";
-
+const std::string JOINT_TORQUES_COMMANDED_KEY = "sai2::keena::actuators::fgc";
 RedisClient redis_client;
 
 // simulation function prototype
