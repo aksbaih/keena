@@ -73,7 +73,7 @@ add_definitions(${SAI2-PRIMITIVES_DEFINITIONS})
 
 # create an executable
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ../bin)
-ADD_EXECUTABLE (controller control/controller.cpp)
+ADD_EXECUTABLE (controller control/controller.cpp control/PDController.cpp)
 ADD_EXECUTABLE (simviz simulation/simviz.cpp)
 
 # and link the library against the executable

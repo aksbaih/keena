@@ -1,35 +1,24 @@
 
 
-#include "Sai2Model.h"
-#include "redis/RedisClient.h"
-#include "timer/LoopTimer.h"
-#include "Sai2Primitives.h"
+#include "PDController.h"
 
-#include <iostream>
-#include <string>
 
-#include <signal.h>
-bool runloop = true;
-void sighandler(int sig)
-{ runloop = false; }
+//bool runloop = true;
+//void sighandler(int sig)
+//{ runloop = false; }
 
 using namespace std;
 using namespace Eigen;
 
 
 PDController::PDController( const string robot_file,
-                            double vmax = 1.0) {
+                            double vmax) {
 	// set attributes
 	maxVelocity = vmax;
 
 	// start redis client
 	redis_client = RedisClient();
 	redis_client.connect();
-
-	// set up signal handler
-	signal(SIGABRT, &sighandler);
-	signal(SIGTERM, &sighandler);
-	signal(SIGINT, &sighandler);
 
 	// load robot
 	robot = new Sai2Model::Sai2Model(robot_file, false);
@@ -41,18 +30,30 @@ PDController::PDController( const string robot_file,
 
 
 void PDController::gotoPosition(const Vector3d position,
-                                const Matrix3d orientation) {
+                                const Matrix3d orientation,
+                                double targetTolerance,
+                                double timeWithinTolerance,
+                                string taskName) {
+    assert(timeWithinTolerance > 0);
+    cout << "Task " << taskName << " started." << endl;
+   	// model quantities for operational space control
+	MatrixXd Jv = MatrixXd::Zero(3,dof);
+	MatrixXd Lambda = MatrixXd::Zero(3,3);
+	MatrixXd N = MatrixXd::Zero(dof,dof);
+	auto sat = [](double val) { return abs(val) <= 1 ? val : val / abs(val); };
+
 	// initialize the task
 	VectorXd command_torques = VectorXd::Zero(dof);
 	LoopTimer timer;
 	timer.initializeTimer();
 	timer.setLoopFrequency(1000);
 	double start_time = timer.elapsedTime(); //secs
+	double latestOutTolerance = start_time;
 	bool fTimerDidSleep = true;
 	redis_client.set(CONTROLLER_RUNING_KEY, "1");
 
 	// task loop
-    while (runloop) {
+    while (true) {
         // wait for next scheduled loop
         timer.waitForNextLoop();
         double time = timer.elapsedTime() - start_time;
@@ -66,12 +67,14 @@ void PDController::gotoPosition(const Vector3d position,
         robot->taskInertiaMatrix(Lambda, Jv);
         VectorXd g(dof); robot->gravityVector(g);
 
-        double kp = 200.0;
+        double kp = 600.0;
         double kv = 40.0;
         double kpj = 0.5 * kp;
         double kvj = 0.5 * kv;
 
         Vector3d x; robot->position(x, link_name, pos_in_link);
+        if((x - position).norm() > targetTolerance) latestOutTolerance = time;
+        if(time - latestOutTolerance >= timeWithinTolerance) break;
         Vector3d dx; robot->linearVelocity(dx, link_name, pos_in_link);
         Vector3d xd = position;
         Vector3d dxd = (kp / kv) * (xd - x);
@@ -87,4 +90,5 @@ void PDController::gotoPosition(const Vector3d position,
     command_torques.setZero();
 	redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
 	redis_client.set(CONTROLLER_RUNING_KEY, "0");
+    cout << "Task " << taskName << " finished." << endl;
 }
