@@ -31,10 +31,10 @@ RedisClient redis_client;
 
 // redis keys:
 // - write:
-const std::string JOINT_ANGLES_KEY  = "sai2::cs225a::project::sensors::q";
-const std::string JOINT_VELOCITIES_KEY = "sai2::cs225a::project::sensors::dq";
-const std::string OBJ_JOINT_ANGLES_KEY  = "sai2::cs225a::object::lego_single_unit::sensors::q";
-const std::string OBJ_JOINT_VELOCITIES_KEY = "sai2::cs225a::object::lego_single_unit::sensors::dq";
+const std::string JOINT_ANGLES_KEY  = "sai2::keena::sensors::q";
+const std::string JOINT_VELOCITIES_KEY = "sai2::keena::sensors::dq";
+const std::string OBJ_JOINT_ANGLES_KEY  = "sai2::keena::lego_single_unit::sensors::q";
+const std::string OBJ_JOINT_VELOCITIES_KEY = "sai2::keena::lego_single_unit::sensors::dq";
 const std::string CAMERA_POS_KEY = "cs225a::camera::pos";
 const std::string CAMERA_ORI_KEY = "cs225a::camera::ori";
 const std::string CAMERA_DETECT_KEY = "cs225a::camera::detect";
@@ -42,7 +42,7 @@ const std::string CAMERA_OBJ_POS_KEY = "cs225a::camera::obj_pos";
 const std::string EE_FORCE_KEY = "cs225a::sensor::force";
 const std::string EE_MOMENT_KEY = "cs225a::sensor::moment";
 // - read:
-const std::string JOINT_TORQUES_COMMANDED_KEY  = "sai2::cs225a::project::actuators::fgc";
+const std::string JOINT_TORQUES_COMMANDED_KEY  = "sai2::keena::actuators::fgc";
 
 // force sensor
 ForceSensorSim* force_sensor;
