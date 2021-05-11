@@ -77,7 +77,7 @@ private:
     double kvj = 0.5 * kv;
 
 	// grip variables
-	const Vector2d openGrip = Vector2d(0.04, -0.04);
+	const Vector2d openGrip = Vector2d(0.02, -0.02);
 	const Vector2d closedGrip = Vector2d(0, 0);
 	Vector2d desiredFingerPosition = openGrip;
 	double gripGain = 0;
