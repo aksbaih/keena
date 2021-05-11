@@ -4,16 +4,22 @@
 cd build || mkdir build && cd build
 cmake ..
 make -j4
-cd ..
+if [ $? -eq 0 ]; then
+    echo "CMAKE DONE"
+    cd ..
 
-# Run components
-cd bin || exit
-./simviz & # simulation
-sleep 2
-./controller & # control
+    # Run components
+    cd bin || exit
+    ./simviz & # simulation
+    sleep 2
+    ./controller & # control
 
-sleep $1 # sleep for the given period before killing
+    sleep $1 # sleep for the given period before killing
 
-pkill -9 -P $$
+    pkill -9 -P $$
 
-echo "Done"
+    echo "Done"
+else
+    echo "CMAKE FAILED"
+    cd ..
+fi
