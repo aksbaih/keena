@@ -54,59 +54,116 @@
         <origin xyz="0 0 0.008" rpy="0 0 0" />
         <geometry>
           <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
-          <box size="0.02 0.012 0.016" />
+          <box size="0.0199975 0.0119975 0.016" />
         </geometry>
       </visual>
-      <visual>
+      <collision>
         <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-        <origin xyz="0.004 0.016 0.008" rpy="0 0 0" />
+        <origin xyz="0 0 0.008" rpy="0 0 0" />
         <geometry>
           <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
-          <box size="0.012 0.02 0.016" />
+          <box size="0.0199975 0.0119975 0.016" />
+        </geometry>
+      </collision> 
+    </link>
+
+    <link name="link7">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.0119975 0.0199975 0.016" />
         </geometry>
       </visual>
-      <visual>
-        <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-        <origin xyz="-0.012 0.02 0.008" rpy="0 0 0" />
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
-          <box size="0.02 0.012 0.016" />
+          <box size="0.0119975 0.0199975 0.016" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link8">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.0199975 0.0119975 0.016" />
         </geometry>
       </visual>
-      <visual>
-        <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-        <origin xyz="-0.016 0.004 0.008" rpy="0 0 0" />
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
-          <box size="0.012 0.02 0.016" />
+          <box size="0.0199975 0.0119975 0.016" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="link9">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.0119975 0.0199975 0.016"/>
         </geometry>
       </visual>
-      <visual>
-        <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-        <origin xyz="-0.006 0.01 0.018" rpy="0 0 0" />
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
-          <box size="0.032 0.032 0.004" />
+          <box size="0.0119975 0.0199975 0.016"/>
+        </geometry>
+      </collision>
+    </link>
+    <link name="link10">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.032 0.032 0.003" />
         </geometry>
       </visual>
-      <visual>
-        <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-        <origin xyz="-0.006 0.01 0.022" rpy="0 0 0" />
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
+          <box size="0.032 0.032 0.003" />
+        </geometry>
+      </collision>
+    </link>
+        <link name="link11">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+           <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
           <box size="0.006 0.006 0.004" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 0.095" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <!-- <mesh filename="../../../model/test_objects/meshes/collision/cup.obj"/> -->
-          <box size="0.072898 0.089916 0.19" />
+          <box size="0.006 0.006 0.004" />
         </geometry>
       </collision>
     </link>
-    
-    
+  
     <joint name="joint1" type="prismatic">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="link0"/>
@@ -155,6 +212,32 @@
       <child link="link4"/>
       <limit effort="100" lower="-100" upper="100" velocity="100"/>
     </joint> -->
+
+   <joint name="joint7" type="fixed"> 
+      <origin xyz="0.004 0.0160025 0.008" rpy="0 0 0" />
+      <parent link="link6"/>
+      <child link="link7"/>
+    </joint> 
+    <joint name="joint8" type="fixed">
+      <origin xyz="-0.0160025 0.004 0" rpy="0 0 0" />
+      <parent link="link7"/>
+      <child link="link8"/>
+    </joint>
+    <joint name="joint9" type="fixed">
+      <origin xyz="-0.004 -0.0160025 0" rpy="0 0 0" />
+      <parent link="link8"/>
+      <child link="link9"/>
+    </joint>
+    <joint name="joint10" type="fixed">
+      <origin xyz="0.01000375 0.00600375 0.01" rpy="0 0 0" />
+      <parent link="link9"/>
+      <child link="link10"/>
+    </joint>
+    <joint name="joint11" type="fixed">
+      <origin xyz="0 0 0.004" rpy="0 0 0" />
+      <parent link="link10"/>
+      <child link="link11"/>
+    </joint>
 </robot>
 
 </xml>

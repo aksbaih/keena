@@ -9,7 +9,7 @@
 
 	<robot name="lego_single_unit">
 		<model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-		<origin xyz="0 -0.35 0.593" rpy="0 0 0" />
+		<origin xyz="0 -0.35 .593" rpy="0 0 0" />
 	</robot>
 
 	<static_object name="Table">
@@ -21,11 +21,11 @@
 	        </geometry>
 	    </collision>
 	    <visual>
-	    	<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-	        <!-- <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" /> -->
+	    	<!--<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />-->
+	        <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
 	        <geometry>
-	            <mesh filename="./resources/model/world/meshes/visual/table.obj" scale="1.0 1.0 1.0"/>
-	            <!-- <box size="1.515 1.0 0.543" /> -->
+	            <!--<mesh filename="./resources/model/world/meshes/visual/table.obj" scale="1.0 1.0 1.0"/>-->
+	            <box size="1.515 1.0 0.543" />
 	        </geometry>
 	        <material name="material_grey">
 		        <color rgba="0.1 0.1 0.1 1.0" />
