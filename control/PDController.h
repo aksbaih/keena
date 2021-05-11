@@ -71,8 +71,8 @@ private:
 	const Vector3d pos_in_link = Vector3d(0, 0, 0.2193);  // 0.0539 + 0.1654 height tip of middle finger
 
 	// gains
-    double kp = 200.0;
-    double kv = 40.0;
+    double kp = 60.0;
+    double kv = 20.0;
     double kpj = 0.5 * kp;
     double kvj = 0.5 * kv;
 

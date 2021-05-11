@@ -38,7 +38,7 @@ void PDController::gotoPosition(const Vector3d position,
 	auto sat = [](double val) { return abs(val) <= 1 ? val : val / abs(val); };
 
 	// initialize the task
-	Matrix3d orientation = rpyToMatrix(rpy);
+	Matrix3d Rd = rpyToMatrix(rpy);
 	VectorXd command_torques = VectorXd::Zero(dof);
 	LoopTimer timer;
 	timer.initializeTimer();
@@ -58,9 +58,12 @@ void PDController::gotoPosition(const Vector3d position,
         robot->_q = redis_client.getEigenMatrixJSON(JOINT_ANGLES_KEY);
         robot->_dq = redis_client.getEigenMatrixJSON(JOINT_VELOCITIES_KEY);
         robot->updateModel();
-        robot->Jv(Jv, link_name, pos_in_link);
-        robot->nullspaceMatrix(N, Jv);
-        robot->taskInertiaMatrix(Lambda, Jv);
+//        robot->Jv(Jv, link_name, pos_in_link);
+//        robot->nullspaceMatrix(N, Jv);
+//        robot->taskInertiaMatrix(Lambda, Jv);
+        MatrixXd J_0(6, dof); robot->J_0(J_0, link_name, pos_in_link);
+        MatrixXd Lambda_0(6, 6); robot->taskInertiaMatrix(Lambda_0, J_0);
+		MatrixXd N_0(dof, dof); robot->nullspaceMatrix(N_0, J_0);
         VectorXd g(dof); robot->gravityVector(g);
 
         Vector3d x; robot->position(x, link_name, pos_in_link);
@@ -70,9 +73,17 @@ void PDController::gotoPosition(const Vector3d position,
         Vector3d xd = position;
         Vector3d dxd = (kp / kv) * (xd - x);
         double v = sat(maxVelocity / dxd.norm());
-        Vector3d F = Lambda * (-kv * (dx - v * dxd));
+        Vector3d linearControl = -kv * (dx - v * dxd);
+
+        Matrix3d R; robot->rotation(R, link_name);
+        Vector3d omega; robot->angularVelocity(omega, link_name, pos_in_link);
+        Vector3d delta_phi = Vector3d::Zero(); for(int i=0; i<3; i++) delta_phi += -0.5 * R.col(i).cross(Rd.col(i));
+        Vector3d angularControl = kp * (-delta_phi) -kv * omega;
+
+        VectorXd totalControl(6); totalControl << linearControl, angularControl;
+        VectorXd F = Lambda_0 * totalControl;
         VectorXd postureControl = robot->_M * (-kpj * (robot->_q /* - 0 */) -kvj * robot->_dq);
-        command_torques = Jv.transpose() * F + N.transpose() * postureControl + g;
+        command_torques = J_0.transpose() * F + N_0.transpose() * postureControl + g;
 
         // gripper control
         command_torques.tail(2) = -gripGain * (robot->_q.tail(2) - desiredFingerPosition) -gripKv * robot->_dq.tail(2) + g.tail(2);
@@ -164,9 +175,9 @@ Matrix3d PDController::rpyToMatrix(const Vector3d rpy) {
     Vector3d s = rpy.array().sin();
 
     Matrix3d R;
-    R << c(1) * c(2), (c(1) * s(2) * s(3)) - (c(3) * s(1)), (s(1) * s(3)) + (c(1) * c(3) * s(2)),
-         c(2) * s(1), (c(1) * c(3)) + (s(1) * s(2) * s(3)), (c(3) * s(1) * s(2)) - (c(1) * s(3)),
-         -s(2), c(2) * s(3), c(2) * c(3);
+    R << c(0) * c(1), (c(0) * s(1) * s(2)) - (c(2) * s(0)), (s(0) * s(2)) + (c(0) * c(2) * s(1)),
+         c(1) * s(0), (c(0) * c(2)) + (s(0) * s(1) * s(2)), (c(2) * s(0) * s(1)) - (c(0) * s(2)),
+         -s(1), c(1) * s(2), c(1) * c(2);
 
     return R;
 }
