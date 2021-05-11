@@ -160,8 +160,8 @@ void PDController::releaseGrip( const double desiredGripGain,
 
 
 Matrix3d PDController::rpyToMatrix(const Vector3d rpy) {
-    Vector3d c = rpy.cos();
-    Vector3d s = rpy.sin();
+    Vector3d c = rpy.array().cos();
+    Vector3d s = rpy.array().sin();
 
     Matrix3d R;
     R << c(1) * c(2), (c(1) * s(2) * s(3)) - (c(3) * s(1)), (s(1) * s(3)) + (c(1) * c(3) * s(2)),
