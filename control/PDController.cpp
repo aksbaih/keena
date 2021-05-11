@@ -3,10 +3,6 @@
 #include "PDController.h"
 
 
-//bool runloop = true;
-//void sighandler(int sig)
-//{ runloop = false; }
-
 using namespace std;
 using namespace Eigen;
 
@@ -28,12 +24,11 @@ PDController::PDController( const string robot_file,
 	robot->updateModel();
 }
 
-
 void PDController::gotoPosition(const Vector3d position,
-                                const Matrix3d orientation,
+                                const Vector3d rpy,
                                 double targetTolerance,
                                 double timeWithinTolerance,
-                                string taskName) {
+                                const string taskName) {
     assert(timeWithinTolerance > 0);
     cout << "Task " << taskName << " started." << endl;
    	// model quantities for operational space control
@@ -43,6 +38,7 @@ void PDController::gotoPosition(const Vector3d position,
 	auto sat = [](double val) { return abs(val) <= 1 ? val : val / abs(val); };
 
 	// initialize the task
+	Matrix3d orientation = rpyToMatrix(rpy);
 	VectorXd command_torques = VectorXd::Zero(dof);
 	LoopTimer timer;
 	timer.initializeTimer();
@@ -67,11 +63,6 @@ void PDController::gotoPosition(const Vector3d position,
         robot->taskInertiaMatrix(Lambda, Jv);
         VectorXd g(dof); robot->gravityVector(g);
 
-        double kp = 200.0;
-        double kv = 40.0;
-        double kpj = 0.5 * kp;
-        double kvj = 0.5 * kv;
-
         Vector3d x; robot->position(x, link_name, pos_in_link);
         if((x - position).norm() > targetTolerance) latestOutTolerance = time;
         if(time - latestOutTolerance >= timeWithinTolerance) break;
@@ -83,6 +74,10 @@ void PDController::gotoPosition(const Vector3d position,
         VectorXd postureControl = robot->_M * (-kpj * (robot->_q /* - 0 */) -kvj * robot->_dq);
         command_torques = Jv.transpose() * F + N.transpose() * postureControl + g;
 
+        // gripper control
+        command_torques.tail(2) = -gripGain * (robot->_q.tail(2) - desiredFingerPosition) -gripKv * robot->_dq.tail(2) + g.tail(2);
+
+        // send controller results to simulation
 		redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
     }
 
@@ -91,4 +86,87 @@ void PDController::gotoPosition(const Vector3d position,
 	redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
 	redis_client.set(CONTROLLER_RUNING_KEY, "0");
     cout << "Task " << taskName << " finished." << endl;
+}
+
+void PDController::enforceGrip( const double equilibriumTolerance,
+                                const double timeWithinTolerance) {
+	VectorXd command_torques = VectorXd::Zero(dof);
+	LoopTimer timer;
+	timer.initializeTimer();
+	timer.setLoopFrequency(1000);
+	double start_time = timer.elapsedTime(); //secs
+	double latestOutTolerance = start_time;
+	bool fTimerDidSleep = true;
+	redis_client.set(CONTROLLER_RUNING_KEY, "1");
+
+	// task loop
+    while (true) {
+        // wait for next scheduled loop
+        timer.waitForNextLoop();
+        double time = timer.elapsedTime() - start_time;
+
+        // read robot state from redis
+        robot->_q = redis_client.getEigenMatrixJSON(JOINT_ANGLES_KEY);
+        robot->_dq = redis_client.getEigenMatrixJSON(JOINT_VELOCITIES_KEY);
+        robot->updateModel();
+        VectorXd g(dof); robot->gravityVector(g);
+
+        // track target tolerance
+        if((robot->_q.tail(2) - desiredFingerPosition).norm() > equilibriumTolerance) latestOutTolerance = time;
+        if(time - latestOutTolerance >= timeWithinTolerance) break;
+
+        // gripper control
+        command_torques.tail(2) = -gripGain * (robot->_q.tail(2) - desiredFingerPosition) -gripKv * robot->_dq.tail(2) + g.tail(2);
+
+        // send controller results to simulation
+		redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
+    }
+
+    // stop control after the task finishes
+    command_torques.setZero();
+	redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
+	redis_client.set(CONTROLLER_RUNING_KEY, "0");
+}
+
+void PDController::holdGrip(const double desiredGripGain,
+                            const double equilibriumTolerance,
+                            const double timeWithinTolerance,
+                            const string taskName) {
+    assert(timeWithinTolerance > 0);
+    cout << "Task " << taskName << " started." << endl;
+
+	// initialize the task
+	desiredFingerPosition = closedGrip;
+	gripGain = desiredGripGain;
+	enforceGrip(equilibriumTolerance, timeWithinTolerance);
+
+    cout << "Task " << taskName << " finished." << endl;
+}
+
+void PDController::releaseGrip( const double desiredGripGain,
+                                const double equilibriumTolerance,
+                                const double timeWithinTolerance,
+                                const string taskName){
+    assert(timeWithinTolerance > 0);
+    cout << "Task " << taskName << " started." << endl;
+
+	// initialize the task
+	desiredFingerPosition = openGrip;
+	gripGain = desiredGripGain;
+	enforceGrip(equilibriumTolerance, timeWithinTolerance);
+
+    cout << "Task " << taskName << " finished." << endl;
+}
+
+
+Matrix3d PDController::rpyToMatrix(const Vector3d rpy) {
+    Vector3d c = rpy.cos();
+    Vector3d s = rpy.sin();
+
+    Matrix3d R;
+    R << c(1) * c(2), (c(1) * s(2) * s(3)) - (c(3) * s(1)), (s(1) * s(3)) + (c(1) * c(3) * s(2)),
+         c(2) * s(1), (c(1) * c(3)) + (s(1) * s(2) * s(3)), (c(3) * s(1) * s(2)) - (c(1) * s(3)),
+         -s(2), c(2) * s(3), c(2) * c(3);
+
+    return R;
 }
