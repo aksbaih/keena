@@ -22,8 +22,10 @@ using namespace Eigen;
 const string world_file =  "./resources/model/world/world.urdf";
 const string robot_file = "./resources/model/panda/panda.urdf";
 const string obj_file ="./resources/model/legos/lego_single_unit.urdf";
+const string table_obj_file = "./resources/model/legos/lego_single_unit.urdf";
 const string robot_name = "panda";
 const string obj_name = "lego_single_unit"; 
+const string table_obj = "table";
 const string camera_name = "camera_fixed";
 const string ee_link_name = "link7";
 
@@ -110,6 +112,11 @@ int main() {
 	// object->_q(1) = -0.35;
 	object->updateModel();
 
+	auto table = new Sai2Model::Sai2Model(table_obj_file, false);
+	// object->_q(0) = 0.60;
+	// object->_q(1) = -0.35;
+	table->updateModel();
+	
 	// load simulation world
 	auto sim = new Simulation::Sai2Simulation(world_file, false);
 	sim->setJointPositions(robot_name, robot->_q);

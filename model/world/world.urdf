@@ -12,7 +12,12 @@
 		<origin xyz="0 -0.35 .593" rpy="0 0 0" />
 	</robot>
 
-	<static_object name="Table">
+	<robot name="table">
+		<model dir="./resources/model/world" path="table.urdf" name="table" />
+		<origin xyz="0 -0.8 0" rpy="0 0 0" />
+	</robot>
+
+	<!-- <static_object name="Table">
 		<origin xyz="0 -0.8 0" rpy="0 0 0" />
 		<collision>
 	        <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
@@ -20,18 +25,18 @@
 	            <box size="1.515 1.0 0.543" />
 	        </geometry>
 	    </collision>
-	    <visual>
+	    <visual> -->
 	    	<!--<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />-->
-	        <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
-	        <geometry>
+	        <!-- <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
+	        <geometry> -->
 	            <!--<mesh filename="./resources/model/world/meshes/visual/table.obj" scale="1.0 1.0 1.0"/>-->
-	            <box size="1.515 1.0 0.543" />
+	            <!-- <box size="1.515 1.0 0.543" />
 	        </geometry>
 	        <material name="material_grey">
 		        <color rgba="0.1 0.1 0.1 1.0" />
 	        </material>
 	    </visual>
-	</static_object>
+	</static_object> -->
 
 	<light name="light1" type="directional">
 		<position xyz="2.0 2.0 2.0" />

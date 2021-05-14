@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="table">
+
+    <link name="link0">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="10" />
+        <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <collision>
+	        <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
+	        <geometry>
+	            <box size="1.515 1.0 0.543" />
+	        </geometry>
+	    </collision>
+	    <visual>
+	    	<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+	        <!-- <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" /> -->
+	        <geometry>
+	            <mesh filename="meshes/visual/table.obj" scale="1.0 1.0 1.0"/>
+	            <!-- <box size="1.515 1.0 0.543" /> -->
+	        </geometry>
+	        <material name="material_grey">
+		        <color rgba="0.1 0.1 0.1 1.0" />
+	        </material>
+	    </visual>
+    </link>
+    <link name="link1">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+        </collision>
+    </link>
+    <link name="link2">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+      </collision>
+    </link>
+        
+    <link name="link3">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+      </collision>
+    </link>
+
+    <link name="link4">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.006 0.006 0.004" />
+          </geometry>
+      </collision>
+    </link>
+  
+    <joint name="joint1" type="fixed">
+      <origin xyz="0.26 0.452 0.5455" rpy="0 0 0" />
+      <parent link="link0"/>
+      <child link="link1"/>
+    </joint>
+
+    <joint name="joint2" type="fixed">
+      <origin xyz="-0.032 0 0" rpy="0 0 0" />
+      <parent link="link1"/>
+      <child link="link2"/>
+    </joint>
+
+    <joint name="joint3" type="fixed">
+      <origin xyz="0 -0.032 0" rpy="0 0 0" />
+      <parent link="link2"/>
+    <child link="link3"/>
+    </joint>
+
+    <joint name="joint4" type="fixed">
+      <origin xyz="0.032 0 0" rpy="0 0 0" />
+      <parent link="link3"/>
+    <child link="link4"/>
+    </joint>
+</robot>
+
+</xml>
+
