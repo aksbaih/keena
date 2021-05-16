@@ -55,7 +55,7 @@
         <geometry>
           <!-- <mesh filename="../../../model/test_objects/meshes/visual/cup.obj"/> -->
           <box size="0.0199975 0.0119975 0.016" />
-        </geometry>
+        </geometry> 
       </visual>
       <collision>
         <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
@@ -144,18 +144,25 @@
         </geometry>
       </collision>
     </link>
-        <link name="link11">
+    
+    <link name="link11">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="0.001" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-           <visual>
+      <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.006 0.006 0.004" />
         </geometry>
       </visual>
+      <!-- <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+	          <mesh filename="meshes/visual/table.obj" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -200,7 +207,7 @@
       <limit effort="21.3" lower="0" upper="6.28" velocity="21.3"/>
     </joint>
     <joint name="joint6" type="revolute">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="-0.004 -0.0100125 0" rpy="0 0 0"/>
       <parent link="link5"/>
       <child link="link6"/>
         <axis xyz="0 0 1"/>
