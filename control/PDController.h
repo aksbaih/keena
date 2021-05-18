@@ -31,7 +31,7 @@ public:
      * this operation maintains any previous call regarding the grip of the fingers.
      */
     void gotoPosition(  const Vector3d position,
-                        const Vector3d rpy,
+                        const Matrix3d desired_rotation,
                         double targetTolerance,
                         double timeWithinTolerance,
                         const string taskName = "");
@@ -69,6 +69,8 @@ private:
 	// end effector constants
 	const string link_name = "link7";
 	const Vector3d pos_in_link = Vector3d(0, 0, 0.2193);  // 0.0539 + 0.1654 height tip of middle finger
+	const Vector3d base_position = Vector3d(0.0, 0.1, 0.1); // from world.urdf
+	const Vector3d base_rpy = Vector3d(0, 0, 0);    // from world.urdf
 
 	// gains
     double kp = 60.0;
