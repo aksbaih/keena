@@ -59,6 +59,8 @@ private:
 	const string JOINT_VELOCITIES_KEY = "sai2::keena::sensors::dq";
 	const string JOINT_TORQUES_COMMANDED_KEY = "sai2::keena::actuators::fgc";
     const string CONTROLLER_RUNING_KEY = "sai2::keena::controller_running";
+    const string SIMULATION_LOOP_DONE_KEY = "sai2::keena::simulation::done";
+    const string CONTROLLER_LOOP_DONE_KEY = "sai2::keena::controller::done";
 
     // robot
 	Sai2Model::Sai2Model *robot;

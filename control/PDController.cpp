@@ -6,6 +6,12 @@
 using namespace std;
 using namespace Eigen;
 
+// function for converting string to bool
+bool string_to_bool(const std::string& x);
+
+// function for converting bool to string
+inline const char * const bool_to_string(bool b);
+
 
 PDController::PDController( const string robot_file,
                             double vmax) {
@@ -99,6 +105,9 @@ void PDController::gotoPosition(const Vector3d absolute_position,
 //	redis_client.set(CONTROLLER_RUNING_KEY, "0");
 //    cout << "Task " << taskName << " finished." << endl;
 
+    bool fSimulationLoopDone = false;
+    bool fControllerLoopDone = false;
+
     #define JOINT_CONTROLLER      0
     #define POSORI_CONTROLLER     1
 
@@ -154,8 +163,8 @@ void PDController::gotoPosition(const Vector3d absolute_position,
 
 	// create a timer
 	LoopTimer timer;
-	timer.initializeTimer();
 	timer.setLoopFrequency(1000);
+	timer.initializeTimer(1000000);
 	double start_time = timer.elapsedTime(); //secs
 	bool fTimerDidSleep = true;
 
@@ -164,72 +173,89 @@ void PDController::gotoPosition(const Vector3d absolute_position,
 		timer.waitForNextLoop();
 		double time = timer.elapsedTime() - start_time;
 
-		// read robot state from redis
-		robot->_q = redis_client.getEigenMatrixJSON(JOINT_ANGLES_KEY);
-		robot->_dq = redis_client.getEigenMatrixJSON(JOINT_VELOCITIES_KEY);
+		// read simulation state
+        fSimulationLoopDone = string_to_bool(redis_client.get(SIMULATION_LOOP_DONE_KEY));
 
-		// update model
-		robot->updateModel();
+		// run controller loop when simulation loop is done
+		if (fSimulationLoopDone) {
+            // read robot state from redis
+            robot->_q = redis_client.getEigenMatrixJSON(JOINT_ANGLES_KEY);
+            robot->_dq = redis_client.getEigenMatrixJSON(JOINT_VELOCITIES_KEY);
 
-		if(state == JOINT_CONTROLLER)
-		{
-			// update task model and set hierarchy
-			N_prec.setIdentity();
-			joint_task->updateTaskModel(N_prec);
+            // update model
+            robot->updateModel();
 
-			// compute torques
-			joint_task->computeTorques(joint_task_torques);
+            if(state == JOINT_CONTROLLER)
+            {
+                // update task model and set hierarchy
+                N_prec.setIdentity();
+                joint_task->updateTaskModel(N_prec);
 
-			command_torques = joint_task_torques;
+                // compute torques
+                joint_task->computeTorques(joint_task_torques);
 
-			if( (robot->_q - q_init_desired).norm() < 0.01 )
-			{
-			    cout << "joint space accomplished. now operational space" << endl;
-				posori_task->reInitializeTask();
-				posori_task->_desired_position = desired_position;
-				posori_task->_desired_orientation = desired_rotation ;//* posori_task->_desired_orientation;
+                command_torques = joint_task_torques;
 
-//				joint_task->reInitializeTask();
-//				joint_task->_kp = 0;
+                if( (robot->_q - q_init_desired).norm() < 0.01 )
+                {
+                    cout << "joint space accomplished. now operational space" << endl;
+                    posori_task->reInitializeTask();
+                    posori_task->_desired_position = desired_position;
+                    posori_task->_desired_orientation = desired_rotation ;//* posori_task->_desired_orientation;
 
-				state = POSORI_CONTROLLER;
-			}
+    //				joint_task->reInitializeTask();
+    //				joint_task->_kp = 0;
+
+                    state = POSORI_CONTROLLER;
+                }
+            }
+
+            else if(state == POSORI_CONTROLLER)
+            {
+                joint_task->reInitializeTask();
+                q_init_desired = robot->_q;
+                q_init_desired.tail(2) = grip ? closedGrip : openGrip;
+                joint_task->_desired_position = q_init_desired;
+
+                // update task model and set hierarchy
+                N_prec.setIdentity();
+                N_prec.bottomRightCorner<2,2>().setZero();
+                posori_task->updateTaskModel(N_prec);
+                N_prec = posori_task->_N;
+                N_prec.bottomRightCorner<2,2>().setIdentity();
+                joint_task->updateTaskModel(N_prec);
+
+                // compute torques
+                posori_task->computeTorques(posori_task_torques);
+                joint_task->computeTorques(joint_task_torques);
+
+    //            posori_task_torques.tail(2) *= 0;
+                command_torques = posori_task_torques + joint_task_torques;
+            }
+
+            // send to redis
+            redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
+
+            // ask for next simulation loop
+            fSimulationLoopDone = false;
+            redis_client.set(SIMULATION_LOOP_DONE_KEY, bool_to_string(fSimulationLoopDone));
+
+            controller_counter++;
 		}
-
-		else if(state == POSORI_CONTROLLER)
-		{
-		    joint_task->reInitializeTask();
-		    q_init_desired = robot->_q;
-            q_init_desired.tail(2) = grip ? closedGrip : openGrip;
-            joint_task->_desired_position = q_init_desired;
-
-			// update task model and set hierarchy
-			N_prec.setIdentity();
-			N_prec.bottomRightCorner<2,2>().setZero();
-			posori_task->updateTaskModel(N_prec);
-			N_prec = posori_task->_N;
-			N_prec.bottomRightCorner<2,2>().setIdentity();
-			joint_task->updateTaskModel(N_prec);
-
-			// compute torques
-			posori_task->computeTorques(posori_task_torques);
-			joint_task->computeTorques(joint_task_torques);
-
-//            posori_task_torques.tail(2) *= 0;
-			command_torques = posori_task_torques + joint_task_torques;
-		}
-
-		// send to redis
-		redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
-
-		controller_counter++;
+        // controller loop is done
+        fControllerLoopDone = true;
+        redis_client.set(CONTROLLER_LOOP_DONE_KEY, bool_to_string(fControllerLoopDone));
 	}
+    // controller loop is turned off
+    fControllerLoopDone = false;
+    redis_client.set(CONTROLLER_LOOP_DONE_KEY, bool_to_string(fControllerLoopDone));
 
 	double end_time = timer.elapsedTime();
     std::cout << "\n";
     std::cout << "Controller Loop run time  : " << end_time << " seconds\n";
-    std::cout << "Controller Loop updates   : " << timer.elapsedCycles() << "\n";
-    std::cout << "Controller Loop frequency : " << timer.elapsedCycles()/end_time << "Hz\n";
+    // std::cout << "Control Loop updates   : " << timer.elapsedCycles() << "\n";
+    // std::cout << "Control Loop frequency : " << timer.elapsedCycles()/end_time << "Hz\n";
+    std::cout << "Control Loop updates   : " << controller_counter << "\n";
 }
 
 void PDController::enforceGrip( const double equilibriumTolerance,
@@ -311,4 +337,18 @@ Matrix3d PDController::rpyToMatrix(const Vector3d rpy) {
     Eigen::Quaternion<double> q = rollAngle * yawAngle * pitchAngle;
 
     return q.matrix();
+}
+
+//------------------------------------------------------------------------------
+
+bool string_to_bool(const std::string& x) {
+  assert(x == "false" || x == "true");
+  return x == "true";
+}
+
+//------------------------------------------------------------------------------
+
+inline const char * const bool_to_string(bool b)
+{
+  return b ? "true" : "false";
 }
