@@ -30,83 +30,15 @@ PDController::PDController( const string robot_file,
 	robot->updateModel();
 }
 
-void PDController::gotoPosition(const Vector3d absolute_position,
+void PDController::gotoPosition(const Vector3d desired_absolute_position,
                                 const Matrix3d desired_rotation,
-                                double targetTolerance,
-                                double timeWithinTolerance,
+                                const bool grip,
+                                double positionalTolerance,
+                                double rotationalTolerance,
                                 const string taskName) {
-    bool grip = true;
     assert(timeWithinTolerance > 0);
     cout << "Task " << taskName << " started." << endl;
-//   	// model quantities for operational space control
-//	MatrixXd Jv = MatrixXd::Zero(3,dof);
-//	MatrixXd Lambda = MatrixXd::Zero(3,3);
-//	MatrixXd N = MatrixXd::Zero(dof,dof);
-//	auto sat = [](double val) { return abs(val) <= 1 ? val : val / abs(val); };
-//
-//	// initialize the task
-	Vector3d desired_position = absolute_position - base_position;
-//	VectorXd command_torques = VectorXd::Zero(dof);
-//	LoopTimer timer;
-//	timer.initializeTimer();
-//	timer.setLoopFrequency(1000);
-//	double start_time = timer.elapsedTime(); //secs
-//	double latestOutTolerance = start_time;
-//	bool fTimerDidSleep = true;
-//	redis_client.set(CONTROLLER_RUNING_KEY, "1");
-//
-//	// task loop
-//    while (true) {
-//        // wait for next scheduled loop
-//        timer.waitForNextLoop();
-//        double time = timer.elapsedTime() - start_time;
-//
-//        // read robot state from redis
-//        robot->_q = redis_client.getEigenMatrixJSON(JOINT_ANGLES_KEY);
-//        robot->_dq = redis_client.getEigenMatrixJSON(JOINT_VELOCITIES_KEY);
-//        robot->updateModel();
-////        robot->Jv(Jv, link_name, pos_in_link);
-////        robot->nullspaceMatrix(N, Jv);
-////        robot->taskInertiaMatrix(Lambda, Jv);
-//        MatrixXd J_0(6, dof); robot->J_0(J_0, link_name, pos_in_link);
-//        MatrixXd Lambda_0(6, 6); robot->taskInertiaMatrix(Lambda_0, J_0);
-//		MatrixXd N_0(dof, dof); robot->nullspaceMatrix(N_0, J_0);
-//        VectorXd g(dof); robot->gravityVector(g);
-//
-//        Vector3d x; robot->position(x, link_name, pos_in_link);
-//        if((x - position).norm() > targetTolerance) latestOutTolerance = time;
-//        if(time - latestOutTolerance >= timeWithinTolerance) break;
-//        Vector3d dx; robot->linearVelocity(dx, link_name, pos_in_link);
-//        Vector3d xd = position;
-//        Vector3d dxd = (kp / kv) * (xd - x);
-//        double v = sat(maxVelocity / dxd.norm());
-//        Vector3d linearControl = -kv * (dx - v * dxd);
-//
-//        Matrix3d R; robot->rotation(R, link_name);
-//        Vector3d omega; robot->angularVelocity(omega, link_name, pos_in_link);
-//        Vector3d delta_phi = Vector3d::Zero(); for(int i=0; i<3; i++) delta_phi += -0.5 * R.col(i).cross(Rd.col(i));
-//        Vector3d angularControl = kp * (-delta_phi) -kv * omega;
-//
-//        VectorXd totalControl(6); totalControl << linearControl, angularControl;
-//        VectorXd F = Lambda_0 * totalControl;
-//        VectorXd postureControl = robot->_M * (-kpj * (robot->_q /* - 0 */) -kvj * robot->_dq);
-//        command_torques = J_0.transpose() * F + N_0.transpose() * postureControl + g;
-//
-//        // gripper control
-//        command_torques.tail(2) = -gripGain * (robot->_q.tail(2) - desiredFingerPosition) -gripKv * robot->_dq.tail(2) + g.tail(2);
-//
-//        // send controller results to simulation
-//		redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
-//    }
-//
-//    // stop control after the task finishes
-//    command_torques.setZero();
-//	redis_client.setEigenMatrixJSON(JOINT_TORQUES_COMMANDED_KEY, command_torques);
-//	redis_client.set(CONTROLLER_RUNING_KEY, "0");
-//    cout << "Task " << taskName << " finished." << endl;
-
-    bool fSimulationLoopDone = false;
-    bool fControllerLoopDone = false;
+	Vector3d desired_position = desired_absolute_position - base_position;
 
     #define JOINT_CONTROLLER      0
     #define POSORI_CONTROLLER     1
@@ -154,8 +86,8 @@ void PDController::gotoPosition(const Vector3d absolute_position,
     #endif
 
 	VectorXd joint_task_torques = VectorXd::Zero(dof);
-	joint_task->_kp = 250.0;
-	joint_task->_kv = 15.0;
+	joint_task->_kp = 200.0;
+	joint_task->_kv = 20.0;
 
 	VectorXd q_init_desired = initial_q;
 	q_init_desired.tail(2) = grip ? closedGrip : openGrip;
@@ -167,6 +99,11 @@ void PDController::gotoPosition(const Vector3d absolute_position,
 	timer.initializeTimer(1000000);
 	double start_time = timer.elapsedTime(); //secs
 	bool fTimerDidSleep = true;
+    bool fSimulationLoopDone = false;
+    bool fControllerLoopDone = false;
+
+    double lastGripEquilibriumTime = start_time;
+    double lastPositionEquilibriumTime = start_time;
 
 	while (true) {
 		// wait for next scheduled loop
@@ -182,6 +119,9 @@ void PDController::gotoPosition(const Vector3d absolute_position,
             robot->_q = redis_client.getEigenMatrixJSON(JOINT_ANGLES_KEY);
             robot->_dq = redis_client.getEigenMatrixJSON(JOINT_VELOCITIES_KEY);
 
+            // Check if it's time to end the task
+            //ff
+
             // update model
             robot->updateModel();
 
@@ -196,8 +136,9 @@ void PDController::gotoPosition(const Vector3d absolute_position,
 
                 command_torques = joint_task_torques;
 
-                if( (robot->_q - q_init_desired).norm() < 0.01 )
-                {
+                // Check if the desired grip has reached equilibrium
+                if(robot->_dq.tail<2>().norm() > gripEquilibriumVelocity) lastGripEquilibriumTime = time;
+                if(time - lastGripEquilibriumTime >= gripEquilibriumDuration) {
                     cout << "joint space accomplished. now operational space" << endl;
                     posori_task->reInitializeTask();
                     posori_task->_desired_position = desired_position;
@@ -212,6 +153,17 @@ void PDController::gotoPosition(const Vector3d absolute_position,
 
             else if(state == POSORI_CONTROLLER)
             {
+                // Check if the task ended
+                Vector3d velocity, angularVelocity;
+                robot->linearVelocity(velocity, link_name, pos_in_link);
+                robot->angularVelocity(angularVelocity, link_name, pos_in_link);
+                if(     !posori_task->goalPositionReached(positionalTolerance) ||
+                        !posori_task->goalOrientationReached(rotationalTolerance) ||
+                         robot->_dq.tail<2>().norm() > gripEquilibriumVelocity ||
+                         velocity.norm() > positionalEquilibriumVelocity ||
+                         angularVelocity.norm() > positionalEquilibriumAngularVelocity) lastPositionEquilibriumTime = time;
+                if(time - lastPositionEquilibriumTime >= positionalEquilibriumDuration) break;
+
                 joint_task->reInitializeTask();
                 q_init_desired = robot->_q;
                 q_init_desired.tail(2) = grip ? closedGrip : openGrip;

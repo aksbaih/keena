@@ -6,6 +6,7 @@
 #include "redis/RedisClient.h"
 #include "timer/LoopTimer.h"
 #include "Sai2Primitives.h"
+#include <float.h>
 
 #include <iostream>
 #include <string>
@@ -32,6 +33,7 @@ public:
      */
     void gotoPosition(  const Vector3d position,
                         const Matrix3d desired_rotation,
+                        const bool grip,
                         double targetTolerance,
                         double timeWithinTolerance,
                         const string taskName = "");
@@ -88,6 +90,12 @@ private:
 	const double gripKv = kvj;
     void enforceGrip(   const double equilibriumTolerance,
                         const double timeWithinTolerance);
+
+    const double gripEquilibriumVelocity = 0.1;
+    const double gripEquilibriumDuration = 0.5;
+    const double positionalEquilibriumVelocity = 0.01;
+    const double positionalEquilibriumAngularVelocity = 0.01;
+    const double positionalEquilibriumDuration = 0.5;
 
     // utils
     Matrix3d rpyToMatrix(const Vector3d rpy);
