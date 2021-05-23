@@ -14,19 +14,19 @@
 	        </geometry>
 	    </collision>
 	    <visual>
-            <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
+            <!-- <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
 	        <geometry>
 	            <box size="1.515 1.0 0.543" />
+	        </geometry> -->
+	    	<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+	        <!-- &lt;!&ndash; <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" /> &ndash;&gt; -->
+	        <geometry>
+	            <mesh filename="meshes/visual/table.obj" scale="1.0 1.0 1.0"/>
+	            <!-- &lt;!&ndash; <box size="1.515 1.0 0.543" /> &ndash;&gt; -->
 	        </geometry>
-<!--	    	<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />-->
-<!--	        &lt;!&ndash; <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" /> &ndash;&gt;-->
-<!--	        <geometry>-->
-<!--	            <mesh filename="meshes/visual/table.obj" scale="1.0 1.0 1.0"/>-->
-<!--	            &lt;!&ndash; <box size="1.515 1.0 0.543" /> &ndash;&gt;-->
-<!--	        </geometry>-->
-<!--	        <material name="material_grey">-->
-<!--		        <color rgba="0.1 0.1 0.1 1.0" />-->
-<!--	        </material>-->
+	        <material name="material_grey">
+		      <color rgba="0.1 0.1 0.1 1.0" />
+	        </material>-->
 	    </visual>
     </link>
     <link name="link1">
@@ -38,13 +38,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+            <!-- <box size="0.006 0.006 0.004" /> -->
+            <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
         </visual>
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+            <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
         </collision>
     </link>
@@ -57,13 +58,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+          <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+            <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
       </collision>
     </link>
@@ -77,13 +78,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+          <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+            <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
       </collision>
     </link>
@@ -94,22 +95,28 @@
         <mass value="1e-10" />
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
             <box size="0.006 0.006 0.004" />
           </geometry>
+      </visual> -->
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+        </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <box size="0.006 0.006 0.004" />
+            <mesh filename="../../../resources/model/legos/meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
       </collision>
     </link>
   
     <joint name="joint1" type="fixed">
-      <origin xyz="0.26 0.452 0.5455" rpy="0 0 0" />
+      <origin xyz="0.26 0.452 0.5435" rpy="0 0 0" />
       <parent link="link0"/>
       <child link="link1"/>
     </joint>
@@ -134,4 +141,3 @@
 </robot>
 
 </xml>
-
