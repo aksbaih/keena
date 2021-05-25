@@ -148,7 +148,12 @@
           <mesh filename="meshes/collision/hand.obj"/>
         </geometry>
       </collision>
-    </link>
+      <visual>
+        <origin xyz="0 0 0.2193" rpy="0 0 -0.78539816339" />
+        <geometry>
+          <sphere radius="0.01" />
+        </geometry>
+      </visual>    </link>
     <link name="leftfinger">
       <inertial>
         <origin xyz="0 0.04 0.05" rpy="0 -0 0" />

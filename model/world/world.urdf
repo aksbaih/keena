@@ -9,7 +9,7 @@
 
 	<robot name="lego_single_unit">
 		<model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-		<origin xyz="0 -0.35 .593" rpy="0 0 0" />
+		<origin xyz="0 -0.35 .546" rpy="0 0 0" />
 	</robot>
 
 	<robot name="table">
