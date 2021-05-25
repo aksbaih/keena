@@ -78,7 +78,7 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
     #endif
 
 	VectorXd joint_task_torques = VectorXd::Zero(dof);
-	joint_task->_kp = 200.0;
+	joint_task->_kp = 400.0;
 	joint_task->_kv = 40.0;
 
 	VectorXd q_init_desired = initial_q;
