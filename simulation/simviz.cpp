@@ -111,7 +111,7 @@ int main() {
 	auto graphics = new Sai2Graphics::Sai2Graphics(world_file, true);
 	Eigen::Vector3d camera_pos, camera_lookat, camera_vertical;
 	graphics->getCameraPose(camera_name, camera_pos, camera_vertical, camera_lookat);
-	graphics->showLinkFrame(true, robot_name, ee_link_name, 0.15);  // can add frames for different links
+	// graphics->showLinkFrame(true, robot_name, ee_link_name, 0.15);  // can add frames for different links
 
 	// load robots
 	auto robot = new Sai2Model::Sai2Model(robot_file, false);

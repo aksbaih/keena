@@ -78,6 +78,7 @@ void PDController::gotoPosition(const Vector3d desired_absolute_position,
 
 	// joint task
 	auto joint_task = new Sai2Primitives::JointTask(robot);
+	joint_task->setDynamicDecouplingNone();
 
     #ifdef USING_OTG
         joint_task->_use_interpolation_flag = true;
@@ -173,7 +174,7 @@ void PDController::gotoPosition(const Vector3d desired_absolute_position,
                 N_prec.setIdentity();
                 N_prec.bottomRightCorner<2,2>().setZero();
                 posori_task->updateTaskModel(N_prec);
-                N_prec = posori_task->_N;
+                N_prec.setZero();  // chan
                 N_prec.bottomRightCorner<2,2>().setIdentity();
                 joint_task->updateTaskModel(N_prec);
 
