@@ -1,4 +1,4 @@
-#include "PDController.h"
+#include "GenericController.h"
 
 using namespace std;
 using namespace Eigen;
@@ -10,7 +10,7 @@ bool string_to_bool(const std::string& x);
 inline const char * const bool_to_string(bool b);
 
 
-PDController::PDController( const string robot_file) {
+GenericController::GenericController( const string robot_file) {
 	// start redis client
 	redis_client = RedisClient();
 	redis_client.connect();
@@ -23,7 +23,7 @@ PDController::PDController( const string robot_file) {
 	robot->updateModel();
 }
 
-void PDController::gotoPosition(const Vector3d desired_absolute_position,
+void GenericController::gotoPosition(const Vector3d desired_absolute_position,
                                 const Matrix3d desired_rotation,
                                 const bool grip,
                                 const double positionalTolerance,

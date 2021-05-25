@@ -1,27 +1,24 @@
-
-#ifndef PDCONTROLLER
-#define PDCONTROLLER
+#ifndef GENERICCONTROLLER
+#define GENERICCONTROLLER
 
 #include "Sai2Model.h"
 #include "redis/RedisClient.h"
 #include "timer/LoopTimer.h"
 #include "Sai2Primitives.h"
 #include <float.h>
-
 #include <iostream>
 #include <string>
-
 #include <signal.h>
 
 using namespace std;
 using namespace Eigen;
 
-class PDController {
+class GenericController {
 
 public:
     /* loads the given robot and prepares it for control through a redis client
      */
-    PDController(const string robot_file);
+    GenericController(const string robot_file);
 
     /* moves the end effector to a desired position and rotation (in world coordinates) after
      * achieving the desired grip. It stops once the goal is within the provided tolerances

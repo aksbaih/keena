@@ -6,7 +6,7 @@
 #include "redis/RedisClient.h"
 #include "timer/LoopTimer.h"
 #include "Sai2Primitives.h"
-#include "PDController.h"
+#include "GenericController.h"
 
 #include <iostream>
 #include <string>
@@ -44,7 +44,7 @@ unsigned long long controller_counter = 0;
 const bool inertia_regularization = true;
 
 int main() {
-    PDController controller(robot_file);
+    GenericController controller(robot_file);
     Matrix3d desired_rotation = AngleAxisd(M_PI/4, Vector3d::UnitZ()).matrix() * AngleAxisd(M_PI, Vector3d::UnitX()).matrix();
     Vector3d xd;
     xd << 0, -0.37, 0.763;
