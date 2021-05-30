@@ -8,6 +8,10 @@ bool string_to_bool(const std::string& x);
 
 // function for converting bool to string
 inline const char * const bool_to_string(bool b);
+// Set up sensor readings
+const std::string EE_FORCE_KEY = "sai2::keena::sensor::force";
+VectorXd joint_forces = VectorXd::Zero(3);
+double threshold = -1.5;
 
 
 GenericController::GenericController( const string robot_file) {
@@ -116,6 +120,7 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
                 // compute torques
                 joint_task->computeTorques(joint_task_torques);
                 command_torques = joint_task_torques;
+
                 // Check if the desired grip has reached equilibrium
                 if(robot->_dq.tail<2>().norm() > gripEquilibriumVelocity) lastGripEquilibriumTime = time;
                 if(time - lastGripEquilibriumTime >= gripEquilibriumDuration) {
@@ -142,6 +147,13 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
                 q_init_desired = robot->_q;
                 q_init_desired.tail(2) = grip ? closedGrip : openGrip;
                 joint_task->_desired_position = q_init_desired;
+                // get sensor readings
+                joint_forces = redis_client.getEigenMatrixJSON(EE_FORCE_KEY);
+                cout << joint_forces;
+                cout<<" ";
+                cout << "\n";
+                // if taskname == "lower" and joint_Force > threshold, move to the next step 
+                if(taskName == "lower" && joint_forces(1) < threshold) break; 
                 // update task model and set hierarchy
                 N_prec.setIdentity();
                 N_prec.bottomRightCorner<2,2>().setZero();
@@ -149,6 +161,7 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
                 N_prec.setZero();
                 N_prec.bottomRightCorner<2,2>().setIdentity();
                 joint_task->updateTaskModel(N_prec);
+               
                 // compute torques
                 posori_task->computeTorques(posori_task_torques);
                 joint_task->computeTorques(joint_task_torques);

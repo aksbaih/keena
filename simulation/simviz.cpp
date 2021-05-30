@@ -1,4 +1,4 @@
-//#include <GL/glew.h>
+#include <GL/glew.h>
 #include "Sai2Model.h"
 #include "Sai2Graphics.h"
 #include "Sai2Simulation.h"
@@ -29,7 +29,7 @@ const string robot_name = "panda";
 const string obj_name = "lego_single_unit"; 
 const string table_obj = "table";
 const string camera_name = "camera_fixed";
-const string ee_link_name = "link7";
+const string ee_link_name = "leftfinger";
 
 RedisClient redis_client;
 
@@ -43,8 +43,8 @@ const std::string CAMERA_POS_KEY = "cs225a::camera::pos";
 const std::string CAMERA_ORI_KEY = "cs225a::camera::ori";
 const std::string CAMERA_DETECT_KEY = "cs225a::camera::detect";
 const std::string CAMERA_OBJ_POS_KEY = "cs225a::camera::obj_pos";
-const std::string EE_FORCE_KEY = "cs225a::sensor::force";
-const std::string EE_MOMENT_KEY = "cs225a::sensor::moment";
+const std::string EE_FORCE_KEY = "sai2::keena::sensor::force";
+const std::string EE_MOMENT_KEY = "sai2::keena::sensor::moment";
 // - read:
 const std::string JOINT_TORQUES_COMMANDED_KEY  = "sai2::keena::actuators::fgc";
 // - read + write:
@@ -198,7 +198,7 @@ int main() {
 	thread sim_thread(simulation, robot, object, sim, ui_force_widget);
 
 	// initialize glew
-	//glewInitialize();
+	glewInitialize();
 
 	// while window is open:
 	while (!glfwWindowShouldClose(window))// && fSimulationRunning)
