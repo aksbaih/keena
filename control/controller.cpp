@@ -53,8 +53,14 @@ int main() {
     controller.gotoPosition(xd, desired_rotation, false, 0.0001, 0.1, "lower");
     xd << -0.016, -0.35, 0.763;
     controller.gotoPosition(xd, desired_rotation, true, 0.0001, 0.1, "grab");
-    xd << 0.2, -0.28, 0.763;
+    xd << 0.23, -0.355, 0.763;
     controller.gotoPosition(xd, desired_rotation, true, 0.01, 0.1, "move");
+    xd << 0.23, -0.355, 0.540;
+    controller.gotoPosition(xd, desired_rotation, true, 0.01, 0.1, "move");
+    xd << 0.23, -0.355, 0.546;
+    controller.gotoPosition(xd, desired_rotation, false, 0.0001, 0.1, "lower");
+    xd << 0.23, -0.355, 0.75;
+    controller.gotoPosition(xd, desired_rotation, false, 0.0001, 0.1, "move");
     cout << "Controller finished" << endl;
     return 0;
 }
