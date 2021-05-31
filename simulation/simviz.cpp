@@ -30,35 +30,22 @@ const string camera_name = "camera_fixed";
 const string ee_link_name = "leftfinger";
 
 const vector<string> static_object_files = {
-	"./resources/model/legos/stud_row.urdf",
-	"./resources/model/legos/stud_row.urdf",
-	"./resources/model/legos/stud_row.urdf",
-	"./resources/model/legos/stud_row.urdf",
-	"./resources/model/legos/stud_row.urdf",
-	"./resources/model/legos/stud_row.urdf",
-	"./resources/model/legos/stud_row.urdf",
-	//"./resources/model/legos/stud_row.urdf",
+	"./resources/model/legos/base_plate.urdf",
 };
+
 const vector<string> static_object_names = {
-	"stud_row1",
-	"stud_row2",
-	"stud_row3",
-	"stud_row4",
-	"stud_row5",
-	"stud_row6",
-	"stud_row7",
-	//"stud_row8",
+	"base_plate",
 };
 
 const vector<string> object_files = {
-	"./resources/model/legos/lego_single_unit.urdf",
-	"./resources/model/legos/lego_single_unit.urdf",
-	"./resources/model/legos/lego_single_unit.urdf",
+	 "./resources/model/legos/lego_single_unit.urdf",
+	 "./resources/model/legos/lego_single_unit.urdf",
+	 "./resources/model/legos/lego_single_unit.urdf",
 };
 const vector<string> object_names = {
-	"lego_single_unit1",
-	"lego_single_unit2",
-	"lego_single_unit3",
+	 "lego_single_unit1",
+	 "lego_single_unit2",
+	 "lego_single_unit3",
 };
 
 const int n_objects = object_names.size();
@@ -145,7 +132,6 @@ int main() {
 	Eigen::Vector3d camera_pos, camera_lookat, camera_vertical;
 	graphics->getCameraPose(camera_name, camera_pos, camera_vertical, camera_lookat);
 	// graphics->showLinkFrame(true, robot_name, ee_link_name, 0.15);  // can add frames for different links
-
 	// load robots
 	auto robot = new Sai2Model::Sai2Model(robot_file, false);
 	robot->_q(0) = -0.8;

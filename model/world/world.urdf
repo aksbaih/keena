@@ -9,20 +9,31 @@
 
 	<robot name="lego_single_unit1">
         <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-        <origin xyz="-0.22 -0.429 .544" rpy="0 0 0" />
+        <!-- <origin xyz="-0.22 -0.429 .564" rpy="0 0 0" /> -->
+		<origin xyz="-0.22 -0.396 .574" rpy="0 0 0" />
     </robot>
 
 	<robot name="lego_single_unit2">
         <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-        <origin xyz="-0.22 -0.396 .544" rpy="0 0 0" />
+        <origin xyz="-0.22 -0.396 .554" rpy="0 0 0" />
+    </robot>
+
+	<robot name="base_plate">
+        <model dir="./resources/model/legos" path="base_plate.urdf" name="base_plate" />
+		<origin xyz="0 -0.43 0.5435" rpy="0 0 0" />
     </robot>
 
 	<robot name="lego_single_unit3">
         <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-        <origin xyz="-0.22 -0.462 .544" rpy="0 0 0" />
+        <origin xyz="-0.22 -0.462 .554" rpy="0 0 0" />
     </robot>
 
-	<robot name="stud_row1">
+	<!-- <robot name="lego_single_unit4">
+        <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+        <origin xyz="-0.22 -0.462 .594" rpy="0 0 0" />
+    </robot> -->
+
+	<!-- <robot name="stud_row1">
 		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
 		<origin xyz=".198 -0.331 .544" rpy="0 0 0" />
 	</robot>
@@ -59,9 +70,9 @@
 	<robot name="stud_row7">
 		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
 		<origin xyz="-0.198 -0.331 .544" rpy="0 0 0" />
-	</robot>
+	</robot> -->
 
-	<static_object name="base_plate">
+	<!-- <static_object name="base_plate">
 		<origin xyz="0 -0.43 0.5435" rpy="0 0 0" />
 		<collision>
 	        <origin xyz="0.0 0.0 0.004" rpy="0 0 0" />
@@ -75,7 +86,7 @@
 				<mesh filename="./resources/model/legos/meshes/visual/base_plate.obj" scale="1.0 1.0 1.0"/>
 	        </geometry>
 	    </visual>
-	</static_object>
+	</static_object> -->
 
 	<static_object name="Table">
 		<origin xyz="0 -0.8 0" rpy="0 0 0" />
@@ -115,7 +126,7 @@
 	</camera>
 
 	<static_object name="lego1">
-	  <origin xyz="0.198 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="0.198 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -125,7 +136,7 @@
 	</static_object>
 
 	<static_object name="lego2">
-	  <origin xyz="0.198 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="0.198 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -135,7 +146,7 @@
 	</static_object>
 
 	<static_object name="lego3">
-	  <origin xyz="0.165 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="0.165 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -145,7 +156,7 @@
 	</static_object>
 
 	<static_object name="lego4">
-	  <origin xyz="0.132 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="0.132 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -155,7 +166,7 @@
 	</static_object>
 
 	<static_object name="lego5">
-	  <origin xyz="0.099 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="0.099 -0.43  0.5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -165,7 +176,7 @@
 	</static_object>
 
 		<static_object name="lego6">
-	  <origin xyz="0.099 -0.463 .544" rpy="0 0 0" />
+	  <origin xyz="0.099 -0.463 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -175,7 +186,7 @@
 	</static_object>
 
 	<static_object name="lego7">
-	  <origin xyz="0.099 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="0.099 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -185,7 +196,7 @@
 	</static_object>
 
 	<static_object name="lego8">
-	  <origin xyz="0.099 -0.396 .544" rpy="0 0 0" />
+	  <origin xyz="0.099 -0.396 0.5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -195,7 +206,7 @@
 	</static_object>
 
 	<static_object name="lego9">
-	  <origin xyz="0.099 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="0.099 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -205,7 +216,7 @@
 	</static_object>
 
 	<static_object name="lego10">
-	  <origin xyz="0.067 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="0.067 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -215,7 +226,7 @@
 	</static_object>
 
 	<static_object name="lego11">
-	  <origin xyz="0.067 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="0.067 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -225,7 +236,7 @@
 	</static_object>
 
 	<static_object name="lego12">
-	  <origin xyz="0.034 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="0.034 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -235,7 +246,7 @@
 	</static_object>
 
 	<static_object name="lego13">
-	  <origin xyz="0.034 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="0.034 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -245,7 +256,7 @@
 	</static_object>
 
 	<static_object name="lego14">
-	  <origin xyz="0.001 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="0.001 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -255,7 +266,7 @@
 	</static_object>
 
 	<static_object name="lego15">
-	  <origin xyz="0.001 -0.463 .544" rpy="0 0 0" />
+	  <origin xyz="0.001 -0.463 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -265,7 +276,7 @@
 	</static_object>
 
 	<static_object name="lego16">
-	  <origin xyz="0.001 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="0.001 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -275,7 +286,7 @@
 	</static_object>
 
 	<static_object name="lego17">
-	  <origin xyz="0.001 -0.396 .544" rpy="0 0 0" />
+	  <origin xyz="0.001 -0.396 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -285,7 +296,7 @@
 	</static_object>
 
 	<static_object name="lego18">
-	  <origin xyz="0.001 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="0.001 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -295,7 +306,7 @@
 	</static_object>
 
 	<static_object name="lego19">
-	  <origin xyz="-0.032 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="-0.032 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -305,7 +316,7 @@
 	</static_object>
 
 	<static_object name="lego20">
-	  <origin xyz="-0.032 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="-0.032 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -315,7 +326,7 @@
 	</static_object>
 
 	<static_object name="lego21">
-	  <origin xyz="-0.065 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="-0.065 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -325,7 +336,7 @@
 	</static_object>
 
 	<static_object name="lego22">
-	  <origin xyz="-0.065 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="-0.065 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -335,7 +346,7 @@
 	</static_object>
 
 	<static_object name="lego23">
-	  <origin xyz="-0.098 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="-0.098 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -345,7 +356,7 @@
 	</static_object>
 
 	<static_object name="lego24">
-	  <origin xyz="-0.098 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="-0.098 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -355,7 +366,7 @@
 	</static_object>
 
 	<static_object name="lego25">
-	  <origin xyz="-0.098 -0.396 .544" rpy="0 0 0" />
+	  <origin xyz="-0.098 -0.396 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -365,7 +376,7 @@
 	</static_object>
 
 	<static_object name="lego26">
-	  <origin xyz="-0.098 -0.364 .544" rpy="0 0 0" />
+	  <origin xyz="-0.098 -0.364 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -375,7 +386,7 @@
 	</static_object>
 
 	<static_object name="lego27">
-	  <origin xyz="-0.131 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="-0.131 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -385,7 +396,7 @@
 	</static_object>
 
 	<static_object name="lego28">
-	  <origin xyz="-0.131 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="-0.131 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -395,7 +406,7 @@
 	</static_object>
 
 	<static_object name="lego29">
-	  <origin xyz="-0.164 -0.496 .544" rpy="0 0 0" />
+	  <origin xyz="-0.164 -0.496 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -405,7 +416,7 @@
 	</static_object>
 
 	<static_object name="lego30">
-	  <origin xyz="-0.164 -0.463 .544" rpy="0 0 0" />
+	  <origin xyz="-0.164 -0.463 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -415,7 +426,7 @@
 	</static_object>
 
 	<static_object name="lego31">
-	  <origin xyz="-0.164 -0.43 .544" rpy="0 0 0" />
+	  <origin xyz="-0.164 -0.43 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
@@ -425,7 +436,7 @@
 	</static_object>
 
 	<static_object name="lego32">
-	  <origin xyz="0.198 -0.463 .544" rpy="0 0 0" />
+	  <origin xyz="0.198 -0.463 .5515" rpy="0 0 0" />
       <visual>
          <origin xyz="0.0 0.0 0" rpy="0 0 0" />
 	        <geometry>
