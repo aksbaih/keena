@@ -1,0 +1,760 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="base_plate">
+
+    <link name="link0">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="10" />
+        <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <collision>
+	        <origin xyz="0.0 0.0 0.004" rpy="0 0 0" />
+	        <geometry>
+	            <box size="0.494 0.230 0.008" />
+	        </geometry>
+	    </collision>
+	    <!-- <visual>
+         <origin xyz="0.0 0.0 0.004" rpy="0 0 0" />
+	       <geometry>
+	            <box size="0.480 0.224 0.008" />
+	        </geometry>
+	    </visual> -->
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+	            <mesh filename="meshes/visual/base_plate.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+    </link>
+
+   <link name="link1">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+   
+    <joint name="joint1" type="fixed">
+      <origin xyz="0.198 0.099 0.0085" rpy="0 0 0" />
+      <parent link="link0"/>
+      <child link="link1"/>
+    </joint>
+
+     <link name="link2">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint2" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link1"/>
+      <child link="link2"/>
+    </joint>
+
+    <link name="link3">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint3" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link2"/>
+      <child link="link3"/>
+    </joint>
+
+    <link name="link4">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint4" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link3"/>
+      <child link="link4"/>
+    </joint>
+
+    <link name="link5">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint5" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link4"/>
+      <child link="link5"/>
+    </joint>
+
+    <link name="link6">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint6" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link5"/>
+      <child link="link6"/>
+    </joint>
+
+    <link name="link7">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint7" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link6"/>
+      <child link="link7"/>
+    </joint>
+
+    <link name="link8">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint8" type="fixed">
+      <origin xyz="-0.033 0 0" rpy="0 0 0" />
+      <parent link="link7"/>
+      <child link="link8"/>
+    </joint>
+
+    <link name="link9">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint9" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link8"/>
+      <child link="link9"/>
+    </joint>
+
+    <link name="link10">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint10" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link9"/>
+      <child link="link10"/>
+    </joint>
+
+    <link name="link11">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint11" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link10"/>
+      <child link="link11"/>
+    </joint>
+
+    <link name="link12">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint12" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link11"/>
+      <child link="link12"/>
+    </joint>
+
+    <link name="link13">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint13" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link12"/>
+      <child link="link13"/>
+    </joint>
+
+    <link name="link14">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint14" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link13"/>
+      <child link="link14"/>
+    </joint>
+
+    <link name="link15">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint15" type="fixed">
+      <origin xyz="-0.033 0 0" rpy="0 0 0" />
+      <parent link="link14"/>
+      <child link="link15"/>
+    </joint>
+
+    <link name="link16">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint16" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link15"/>
+      <child link="link16"/>
+    </joint>
+
+     <link name="link17">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint17" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link16"/>
+      <child link="link17"/>
+    </joint>
+
+     <link name="link18">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint18" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link17"/>
+      <child link="link18"/>
+    </joint>
+
+    <link name="link19">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint19" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link18"/>
+      <child link="link19"/>
+    </joint>
+
+    <link name="link20">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint20" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link19"/>
+      <child link="link20"/>
+    </joint>
+
+    <link name="link21">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint21" type="fixed">
+      <origin xyz="0 -0.033 0" rpy="0 0 0" />
+      <parent link="link20"/>
+      <child link="link21"/>
+    </joint>
+
+    <link name="link22">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint22" type="fixed">
+      <origin xyz="-0.033 0 0" rpy="0 0 0" />
+      <parent link="link21"/>
+      <child link="link22"/>
+    </joint>
+
+    <link name="link23">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint23" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link22"/>
+      <child link="link23"/>
+    </joint>
+
+    <link name="link24">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint24" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link23"/>
+      <child link="link24"/>
+    </joint>
+
+    <link name="link25">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint25" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link24"/>
+      <child link="link25"/>
+    </joint>
+
+    <link name="link26">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint26" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link25"/>
+      <child link="link26"/>
+    </joint>
+
+    <link name="link27">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint27" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link26"/>
+      <child link="link27"/>
+    </joint>
+
+    <link name="link28">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1e-10" />
+        <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
+          </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint28" type="fixed">
+      <origin xyz="0 0.033 0" rpy="0 0 0" />
+      <parent link="link27"/>
+      <child link="link28"/>
+    </joint>
+
+</robot>
+
+</xml>
