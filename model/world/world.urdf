@@ -7,17 +7,73 @@
 		<origin xyz="0.0 0.1 0.1" rpy="0 0 0" />
 	</robot>
 
-	<robot name="lego_single_unit">
-		<model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-		<origin xyz="0 -0.35 .546" rpy="0 0 0" />
+	<robot name="lego_single_unit1">
+        <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+        <origin xyz="-0.22 -0.429 .544" rpy="0 0 0" />
+    </robot>
+
+	<robot name="lego_single_unit2">
+        <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+        <origin xyz="-0.22 -0.396 .544" rpy="0 0 0" />
+    </robot>
+
+	<robot name="lego_single_unit3">
+        <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+        <origin xyz="-0.22 -0.462 .544" rpy="0 0 0" />
+    </robot>
+
+	<robot name="stud_row1">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz=".198 -0.331 .544" rpy="0 0 0" />
 	</robot>
 
-	<robot name="table">
-		<model dir="./resources/model/world" path="table.urdf" name="table" />
-		<origin xyz="0 -0.8 0" rpy="0 0 0" />
+	<robot name="stud_row2">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz=".132 -0.331 .544" rpy="0 0 0" />
 	</robot>
 
-	<!-- <static_object name="Table">
+	<robot name="stud_row3">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz=".066 -0.331 .544" rpy="0 0 0" />
+	</robot> 
+
+	<robot name="stud_row4">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz="0 -0.331 .544" rpy="0 0 0" />
+	</robot>
+	
+	<robot name="stud_row5">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz="-0.066 -0.331 .544" rpy="0 0 0" />
+	</robot>
+
+	<robot name="stud_row6">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz="-0.132 -0.331 .544" rpy="0 0 0" />
+	</robot>
+
+	<robot name="stud_row7">
+		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
+		<origin xyz="-0.198 -0.331 .544" rpy="0 0 0" />
+	</robot>
+
+	<static_object name="base_plate">
+		<origin xyz="0 -0.43 0.5435" rpy="0 0 0" />
+		<collision>
+	        <origin xyz="0.0 0.0 0.004" rpy="0 0 0" />
+	        <geometry>
+	            <box size="0.494 0.230 0.008" />
+	        </geometry>
+	    </collision>
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/base_plate.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="Table">
 		<origin xyz="0 -0.8 0" rpy="0 0 0" />
 		<collision>
 	        <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
@@ -25,18 +81,18 @@
 	            <box size="1.515 1.0 0.543" />
 	        </geometry>
 	    </collision>
-	    <visual> -->
+	    <visual>
 	    	<!--<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />-->
-	        <!-- <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
-	        <geometry> -->
+	        <origin xyz="0.0 0.0 0.2715" rpy="0 0 0" />
+	        <geometry>
 	            <!--<mesh filename="./resources/model/world/meshes/visual/table.obj" scale="1.0 1.0 1.0"/>-->
-	            <!-- <box size="1.515 1.0 0.543" />
+	            <box size="1.515 1.0 0.543" />
 	        </geometry>
 	        <material name="material_grey">
 		        <color rgba="0.1 0.1 0.1 1.0" />
 	        </material>
 	    </visual>
-	</static_object> -->
+	</static_object>
 
 	<light name="light1" type="directional">
 		<position xyz="2.0 2.0 2.0" />
@@ -53,5 +109,328 @@
 		<vertical xyz="0.0 0.0 1.0" />
 		<lookat xyz="0.0 0.0 0.5" />
 	</camera>
+
+	<static_object name="lego1">
+	  <origin xyz="0.198 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego2">
+	  <origin xyz="0.198 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego3">
+	  <origin xyz="0.165 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego4">
+	  <origin xyz="0.132 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego5">
+	  <origin xyz="0.099 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+		<static_object name="lego6">
+	  <origin xyz="0.099 -0.463 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego7">
+	  <origin xyz="0.099 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego8">
+	  <origin xyz="0.099 -0.396 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego9">
+	  <origin xyz="0.099 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego10">
+	  <origin xyz="0.067 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego11">
+	  <origin xyz="0.067 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego12">
+	  <origin xyz="0.034 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego13">
+	  <origin xyz="0.034 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego14">
+	  <origin xyz="0.001 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego15">
+	  <origin xyz="0.001 -0.463 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego16">
+	  <origin xyz="0.001 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego17">
+	  <origin xyz="0.001 -0.396 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego18">
+	  <origin xyz="0.001 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego19">
+	  <origin xyz="-0.032 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego20">
+	  <origin xyz="-0.032 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego21">
+	  <origin xyz="-0.065 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego22">
+	  <origin xyz="-0.065 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego23">
+	  <origin xyz="-0.098 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego24">
+	  <origin xyz="-0.098 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego25">
+	  <origin xyz="-0.098 -0.396 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego26">
+	  <origin xyz="-0.098 -0.364 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego27">
+	  <origin xyz="-0.131 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego28">
+	  <origin xyz="-0.131 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego29">
+	  <origin xyz="-0.164 -0.496 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego30">
+	  <origin xyz="-0.164 -0.463 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego31">
+	  <origin xyz="-0.164 -0.43 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+	<static_object name="lego32">
+	  <origin xyz="0.198 -0.463 .544" rpy="0 0 0" />
+      <visual>
+         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+	        <geometry>
+				<mesh filename="./resources/model/legos/meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
+	        </geometry>
+	    </visual>
+	</static_object>
+
+
+
 
 </world>
