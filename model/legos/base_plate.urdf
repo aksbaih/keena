@@ -163,7 +163,7 @@
       <child link="link5"/>
     </joint>
 
-    <link name="link6">
+    <!-- <link name="link6">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <mass value="1e-10" />
@@ -175,12 +175,6 @@
 	            <box size="0.032 0.164 0.024" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.032 0.164 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint6" type="fixed">
@@ -201,12 +195,6 @@
 	            <box size="0.23 0.032 0.024" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.23 0.032 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint7" type="fixed">
@@ -227,12 +215,6 @@
 	            <box size="0.164 0.032 0.024" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.164 0.032 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint8" type="fixed">
@@ -253,12 +235,6 @@
 	            <box size="0.032 0.098 0.024" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.032 0.098 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint9" type="fixed">
@@ -280,12 +256,6 @@
 	            <box size="0.032 0.098 0.024" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.032 0.098 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint10" type="fixed">
@@ -306,12 +276,6 @@
 	            <box size="0.032 0.098 0.024" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.032 0.098 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint11" type="fixed">
@@ -333,19 +297,13 @@
 	            <box size="0.032 0.032 0.048" />
 	        </geometry>
 	    </collision>
-	    <!-- <visual>
-        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.032 0.032 0.024" />
-	        </geometry>
-	    </visual> -->
     </link>
 
     <joint name="joint12" type="fixed">
       <origin xyz="0.033 0.033 0" rpy="0 0 0" />
       <parent link="link11"/>
       <child link="link12"/>
-    </joint>
+    </joint> -->
 
 </robot>
 
