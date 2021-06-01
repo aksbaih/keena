@@ -49,7 +49,7 @@ int main() {
 	MatrixXd legoEnd = MatrixXd::Zero(3, 3);
 	VectorXd legoEndYawOffset = VectorXd::Zero(3); 
 	legoStart << -0.22, -0.396, 0.572,-0.22, -0.396, 0.552,-0.225, -0.452, 0.552;
-	legoEnd   <<   0.070, -0.429, 0.546,-0.052, -0.429, 0.546,-0.088, -0.462, 0.546;
+	legoEnd   <<   0.075, -0.429, 0.546,-0.054, -0.429, 0.546,-0.088, -0.462, 0.546;
         legoEndYawOffset << M_PI/2, M_PI/2,0; 
     GenericController controller(robot_file);
     Matrix3d desired_rotation = AngleAxisd(M_PI/4, Vector3d::UnitZ()).matrix() * AngleAxisd(M_PI, Vector3d::UnitX()).matrix();
@@ -134,9 +134,9 @@ int main() {
     controller.gotoPosition(xd, desired_rotation, false, 0.01, 0.15, "move");
     //cout << "next piece please!";
     
-//        desired_rotation = AngleAxisd(M_PI/4, Vector3d::UnitZ()).matrix() * AngleAxisd(M_PI, Vector3d::UnitX()).matrix();
-///    xd = legoEnd.row(i).transpose() + verticalOffset_2;
- //   controller.gotoPosition(xd, desired_rotation, true, 0.01, 0.15, "lower");
+        desired_rotation = AngleAxisd(M_PI/4, Vector3d::UnitZ()).matrix() * AngleAxisd(M_PI, Vector3d::UnitX()).matrix();
+    xd = legoEnd.row(i).transpose() + verticalOffset_2;
+    controller.gotoPosition(xd, desired_rotation, true, 0.01, 0.15, "lower");
     //cout << "next piece please!";
     
 
