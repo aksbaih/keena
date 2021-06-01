@@ -149,9 +149,9 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
                 joint_task->_desired_position = q_init_desired;
                 // get sensor readings
                 joint_forces = redis_client.getEigenMatrixJSON(EE_FORCE_KEY);
-                cout << joint_forces;
-                cout<<" ";
-                cout << "\n";
+                //cout << joint_forces;
+                //cout<<" ";
+                //cout << "\n";
                 // if taskname == "lower" and joint_Force > threshold, move to the next step 
                 if(taskName == "lower" && joint_forces(1) < threshold) break; 
                 // update task model and set hierarchy
