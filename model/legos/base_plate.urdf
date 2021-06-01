@@ -34,12 +34,12 @@
         <mass value="1e-10" />
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
             <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
-        </visual>
+        </visual> -->
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -61,12 +61,12 @@
         <mass value="1e-10" />
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
             <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
-        </visual>
+        </visual> -->
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -88,12 +88,12 @@
         <mass value="1e-10" />
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
             <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
-        </visual>
+        </visual> -->
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -115,12 +115,12 @@
         <mass value="1e-10" />
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
             <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
-        </visual>
+        </visual> -->
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -142,12 +142,12 @@
         <mass value="1e-10" />
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
             <mesh filename="meshes/collision/chamfered_stud.obj" scale="1 1 1"/>
           </geometry>
-        </visual>
+        </visual> -->
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>

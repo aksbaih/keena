@@ -49,12 +49,12 @@
         <mass value="0.004" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0.008" rpy="0 0 0" />
         <geometry>
           <box size="0.0199975 0.0119975 0.016" />
         </geometry> 
-      </visual>
+      </visual> -->
       <collision>
         <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
         <origin xyz="0 0 0.008" rpy="0 0 0" />
@@ -71,12 +71,12 @@
         <mass value="0.004" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
          <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.0119975 0.0199975 0.016" />
         </geometry>
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -91,12 +91,12 @@
         <mass value="0.004" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.0199975 0.0119975 0.016" />
         </geometry>
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -110,12 +110,12 @@
         <mass value="0.004" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.0119975 0.0199975 0.016"/>
         </geometry>
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -129,12 +129,12 @@
         <mass value="0.001" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.032 0.032 0.003" />
         </geometry>
-      </visual>
+      </visual> -->
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -149,18 +149,18 @@
         <mass value="0.001" />
         <inertia ixx="1e-2" iyy="1e-2" izz="1e-2" ixy="0" ixz="0" iyz="0" />
       </inertial>
-      <visual>
+      <!-- <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <box size="0.006 0.006 0.004" />
         </geometry>
-      </visual>
-      <!-- <visual>
+      </visual> -->
+      <visual>
         <origin xyz="0 0 -0.022" rpy="0 0 0" />
         <geometry>
             <mesh filename="meshes/visual/legoSingleUnitColor.obj" scale="1.0 1.0 1.0"/>
         </geometry>
-      </visual> -->
+      </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
