@@ -152,7 +152,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.006 0.006 0.004" />
+          <box size="0.006 0.006 0.014" />
         </geometry>
       </visual>
       <!-- <visual>
@@ -164,7 +164,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <box size="0.006 0.006 0.004" />
+          <box size="0.006 0.006 0.014" />
         </geometry>
       </collision>
     </link>
@@ -239,7 +239,7 @@
       <child link="link10"/>
     </joint>
     <joint name="joint11" type="fixed">
-      <origin xyz="0 0 0.004" rpy="0 0 0" />
+      <origin xyz="0 0 0.009" rpy="0 0 0" />
       <parent link="link10"/>
       <child link="link11"/>
     </joint>

@@ -170,9 +170,9 @@
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
       <collision>
-	        <origin xyz="0.0 0.0 0.024" rpy="0 0 0" />
+	        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
 	        <geometry>
-	            <box size="0.032 0.164 0.048" />
+	            <box size="0.032 0.164 0.024" />
 	        </geometry>
 	    </collision>
 	    <!-- <visual>
@@ -196,9 +196,9 @@
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
       <collision>
-	        <origin xyz="0.0 0.0 0.024" rpy="0 0 0" />
+	        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
 	        <geometry>
-	            <box size="0.23 0.032 0.048" />
+	            <box size="0.23 0.032 0.024" />
 	        </geometry>
 	    </collision>
 	    <!-- <visual>
@@ -222,9 +222,9 @@
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
       <collision>
-	        <origin xyz="0.0 0.0 0.024" rpy="0 0 0" />
+	        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
 	        <geometry>
-	            <box size="0.164 0.032 0.048" />
+	            <box size="0.164 0.032 0.024" />
 	        </geometry>
 	    </collision>
 	    <!-- <visual>
@@ -248,9 +248,9 @@
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
       <collision>
-	        <origin xyz="0.0 0.0 0.024" rpy="0 0 0" />
+	        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
 	        <geometry>
-	            <box size="0.032 0.098 0.048" />
+	            <box size="0.032 0.098 0.024" />
 	        </geometry>
 	    </collision>
 	    <!-- <visual>
@@ -275,9 +275,9 @@
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
       <collision>
-	        <origin xyz="0.0 0.0 0.024" rpy="0 0 0" />
+	        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
 	        <geometry>
-	            <box size="0.032 0.098 0.048" />
+	            <box size="0.032 0.098 0.024" />
 	        </geometry>
 	    </collision>
 	    <!-- <visual>
@@ -301,9 +301,9 @@
         <inertia ixx="1e-10" iyy="1e-10" izz="1e-10" ixy="0" ixz="0" iyz="0" />
       </inertial>
       <collision>
-	        <origin xyz="0.0 0.0 0.024" rpy="0 0 0" />
+	        <origin xyz="0.0 0.0 0.012" rpy="0 0 0" />
 	        <geometry>
-	            <box size="0.032 0.098 0.048" />
+	            <box size="0.032 0.098 0.024" />
 	        </geometry>
 	    </collision>
 	    <!-- <visual>

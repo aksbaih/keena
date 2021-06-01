@@ -7,9 +7,13 @@
 		<origin xyz="0.0 0.1 0.1" rpy="0 0 0" />
 	</robot>
 
+	<robot name="base_plate">
+        <model dir="./resources/model/legos" path="base_plate.urdf" name="base_plate" />
+		<origin xyz="0 -0.43 0.5435" rpy="0 0 0" />
+    </robot>
+
 	<robot name="lego_single_unit1">
         <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-        <!-- <origin xyz="-0.22 -0.429 .564" rpy="0 0 0" /> -->
 		<origin xyz="-0.22 -0.396 .574" rpy="0 0 0" />
     </robot>
 
@@ -18,71 +22,27 @@
         <origin xyz="-0.22 -0.396 .554" rpy="0 0 0" />
     </robot>
 
-	<robot name="base_plate">
-        <model dir="./resources/model/legos" path="base_plate.urdf" name="base_plate" />
-		<origin xyz="0 -0.43 0.5435" rpy="0 0 0" />
-    </robot>
-
 	<robot name="lego_single_unit3">
         <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
         <origin xyz="-0.22 -0.462 .554" rpy="0 0 0" />
     </robot>
 
-	<!-- <robot name="lego_single_unit4">
+	<!-- Final Positions -->
+	<!-- <robot name="lego_single_unit1">
         <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
-        <origin xyz="-0.22 -0.462 .594" rpy="0 0 0" />
+		<origin xyz="0.077 -0.429 .552" rpy="0 0 0" />
+    </robot>
+
+	<robot name="lego_single_unit2">
+        <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+        <origin xyz="-0.055 -0.429 .552" rpy="0 0 0" />
+    </robot>
+
+	<robot name="lego_single_unit3">
+        <model dir="./resources/model/legos" path="lego_single_unit.urdf" name="lego_single_unit" />
+        <origin xyz="-0.088 -0.462 .552" rpy="0 0 0" />
     </robot> -->
 
-	<!-- <robot name="stud_row1">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz=".198 -0.331 .544" rpy="0 0 0" />
-	</robot>
-
-	<robot name="stud_row2">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz=".132 -0.331 .544" rpy="0 0 0" />
-	</robot>
-
-	<robot name="stud_row3">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz=".066 -0.331 .544" rpy="0 0 0" />
-	</robot> 
-
-	<robot name="stud_row4">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz="0 -0.331 .544" rpy="0 0 0" />
-	</robot>
-	
-	<robot name="stud_row5">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz="-0.066 -0.331 .544" rpy="0 0 0" />
-	</robot>
-
-	<robot name="stud_row6">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz="-0.132 -0.331 .544" rpy="0 0 0" />
-	</robot>
-
-	<robot name="stud_row7">
-		<model dir="./resources/model/legos" path="stud_row.urdf" name="stud_row" />
-		<origin xyz="-0.198 -0.331 .544" rpy="0 0 0" />
-	</robot> -->
-
-	<!-- <static_object name="base_plate">
-		<origin xyz="0 -0.43 0.5435" rpy="0 0 0" />
-		<collision>
-	        <origin xyz="0.0 0.0 0.004" rpy="0 0 0" />
-	        <geometry>
-	            <box size="0.494 0.230 0.008" />
-	        </geometry>
-	    </collision>
-      <visual>
-         <origin xyz="0.0 0.0 0" rpy="0 0 0" />
-	        <geometry>
-				<mesh filename="./resources/model/legos/meshes/visual/base_plate.obj" scale="1.0 1.0 1.0"/>
-	        </geometry>
-	    </visual>
-	</static_object> -->
 
 	<static_object name="Table">
 		<origin xyz="0 -0.8 0" rpy="0 0 0" />
