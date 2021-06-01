@@ -11,7 +11,7 @@ inline const char * const bool_to_string(bool b);
 // Set up sensor readings
 const std::string EE_FORCE_KEY = "sai2::keena::sensor::force";
 VectorXd joint_forces = VectorXd::Zero(3);
-double threshold = -1.5;
+double threshold = -1;
 
 
 GenericController::GenericController( const string robot_file) {
@@ -82,7 +82,7 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
     #endif
 
 	VectorXd joint_task_torques = VectorXd::Zero(dof);
-	joint_task->_kp = 400.0;
+	joint_task->_kp = 500.0;
 	joint_task->_kv = 40.0;
 
 	VectorXd q_init_desired = initial_q;
@@ -153,7 +153,8 @@ void GenericController::gotoPosition(const Vector3d desired_absolute_position,
                 //cout<<" ";
                 //cout << "\n";
                 // if taskname == "lower" and joint_Force > threshold, move to the next step 
-                if(taskName == "lower" && joint_forces(1) < threshold) break; 
+                if(taskName == "lower" && joint_forces(1) < threshold) {
+                cout<<"force MAX"; break; }
                 // update task model and set hierarchy
                 N_prec.setIdentity();
                 N_prec.bottomRightCorner<2,2>().setZero();
