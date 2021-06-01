@@ -178,7 +178,7 @@ int main() {
     // set co-efficient of friction also to zero for now as this causes jitter
     // sim->setCoeffFrictionStatic(0.0);
     // sim->setCoeffFrictionDynamic(0.0);
-    sim->setCoeffFrictionStatic(0.5);
+    sim->setCoeffFrictionStatic(0.75);
     sim->setCoeffFrictionDynamic(0.5);
 
 	// initialize force sensor: needs Sai2Simulation sim interface type
@@ -469,7 +469,7 @@ void simulation(Sai2Model::Sai2Model* robot, vector<Sai2Model::Sai2Model*> objec
 
             // update force sensor readings
             force_sensor->update(sim);
-            force_sensor->getForceLocalFrame(sensed_force);  // refer to ForceSensorSim.h in sai2-common/src/force_sensor (can also get wrt global frame)
+            force_sensor->getForce(sensed_force);  // refer to ForceSensorSim.h in sai2-common/src/force_sensor (can also get wrt global frame)
             force_sensor->getMomentLocalFrame(sensed_moment);
 
             // std::cout << "Sensed Force: " << sensed_force.transpose() << "Sensed Moment: " << sensed_moment.transpose() << std::endl;
